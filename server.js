@@ -15,12 +15,15 @@ app.set("view engine", "handlebars");
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(morgan("dev"));
+app.use(express.static("public"));
 
 //routes
 app.use(require("./controllers/staticController"));
+app.use("/burgers", require("./controllers/burgerController"));
+
 
 //sync schema
-db.sequelize.sync({ force: true })
+db.sequelize.sync({ force: false })
     .then(() => {
         app.listen(PORT, () => {
             console.log(`==> Server listening at http://localhost:${PORT}`)
