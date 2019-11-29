@@ -1,16 +1,3 @@
-<h1>Here Be a Burger List</h1>
-
-<div>
-    <h2>Undevoured Burgers</h2>
-    {{json undevoured}}
-</div>
-
-<div>
-    <h2>Devoured Burgers</h2>
-    <h3>NOM NOM</h3>
-    {{json devoured}}
-</div>
-
 <div class="grid-y medium-grid-frame">
     <div class="cell shrink header medium-cell-block-container">
         <h1>Eat That Burger!</h1>
@@ -20,15 +7,25 @@
     <div class="grid-x grid-padding-x">
         <div class="cell medium-5 medium-cell-block-y">
             <h3>Delicious Burger</h3>
-            <ul class="burger delicious">
-
-            </ul>
+            <div class="burger delicious">
+                {{#each undevoured}}
+                <div id="undevoured-{{this.id}}"  class="input-group">
+                    <input class="input-group-field undevoured" disabled type="text"
+                        value="{{this.name}}">
+                    <div class="input-group-button">
+                        <button type="button" class="button devour"
+                            value="{{this.id}}">Devour</button>
+                    </div>
+                </div>
+                {{/each}}
+            </div>
         </div>
-
         <div class="cell medium-5 medium-cell-block-y">
             <h3>Devoured Burger</h3>
             <ul class="burger devoured">
-
+                {{#each devoured}}
+                <li id="devoured-{{this.id}}">{{this.name}}</li>
+                {{/each}}
             </ul>
         </div>
     </div>
@@ -39,7 +36,7 @@
             <div class="grid-x grid-padding-x">
                 <h2>Add A Burger!</h2>
                 <div class="medium-auto cell">
-                    <label>Input Label
+                    <label>Add a burger
                         <input type="text" placeholder="Bacon Cheeseburger" id="burgerInput">
                     </label>
                     <button type="submit" class="success button large" id="addBurgerBtn">Make My Burger!</button>
@@ -49,3 +46,4 @@
     </form>
 </div>
 </div>
+<script type="text/javascript" src="assets/js/burgers.js"></script>

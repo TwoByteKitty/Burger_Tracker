@@ -21,7 +21,6 @@ app.use(express.static("public"));
 app.use(require("./controllers/staticController"));
 app.use("/burgers", require("./controllers/burgerController"));
 
-
 //sync schema
 db.sequelize.sync({ force: false })
     .then(() => {
