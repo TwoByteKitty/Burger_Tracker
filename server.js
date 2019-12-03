@@ -2,6 +2,8 @@ const express = require("express");
 const exphbs = require("express-handlebars");
 const morgan = require("morgan");
 const db = require("./models/index");
+const staticRouter = require("./controllers/staticController");
+const burgerRouter = require("./controllers/burgerController");
 
 const PORT = process.env.PORT || 8080;
 
@@ -18,8 +20,8 @@ app.use(morgan("dev"));
 app.use(express.static("public"));
 
 //routes
-app.use(require("./controllers/staticController"));
-app.use("/burgers", require("./controllers/burgerController"));
+app.use(staticRouter);
+app.use("/burgers", burgerRouter);
 
 //sync schema
 db.sequelize.sync({ force: false })
